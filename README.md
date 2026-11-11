@@ -6,4 +6,4 @@ A request branch is named `requests/<SHA-256>`. Its workflow waits for the confi
 
 An approved workflow is evidence for that exact frozen candidate, not a deployment itself. The production verifier independently reads GitHub review history, checks the repository and environment IDs, approver, workflow content, candidate digest, first attempt, successful completion and expiry. A completed run without a matching approval must be denied. Existing preflight, health, storage admission, backups and recovery requirements still apply.
 
-Production access is not granted by this repository. No production keys or tokens belong here. Implementation and verification are still pending until documented end-to-end evidence exists in the private project.
+Production access is not granted by this repository. No production keys or tokens belong here. On 2026-11-11 UTC, a synthetic approval, execution and recovery cycle was verified; detailed evidence remains private. This does not authorize any application release or grant unrestricted administrative access.

@@ -1,0 +1,24 @@
+name: Candidate approval
+run-name: "Approve ${{ github.ref_name }}"
+on:
+  push:
+    branches: ["requests/*"]
+permissions: {}
+jobs:
+  approval:
+    name: Human approval
+    environment: CAF-PROD-APPROVAL
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Validate opaque candidate reference
+        env:
+          REQUEST_REF: ${{ github.ref_name }}
+        run: |
+          python3 - <<'PY'
+          import os, re
+          ref = os.environ["REQUEST_REF"]
+          if re.fullmatch(r"requests/[a-f0-9]{64}", ref) is None:
+              raise SystemExit("Invalid candidate reference")
+          print("Approval recorded for " + ref)
+          PY
